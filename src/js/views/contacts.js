@@ -11,7 +11,7 @@ export const Contacts = () => {
 	
 	return (
 		<div className="container d-flex mx-auto justify-content-center mt-3 row">
-			{store.contacts.map((contact,index)=>{
+			{store.contacts.map((contact, index) => {
 				return(
 					<ContactCard contactId={contact.id} name={contact.name} email={contact.email} phone={contact.phone} address={contact.address} key={index} />
 				)

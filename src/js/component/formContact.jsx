@@ -19,7 +19,7 @@ const FormContact = () => {
   //Esta funcion se ejecuta cuando el usuario da en 'guardar', cuando quiere crear un contacto nuevo.
   const createContact = (e) => {
     e.preventDefault();
-    const res = actions.createContacts(name, email, phone, address);
+    const res = actions.createContact(name, email, phone, address);
     if (res) {
       navigate("/");
     }
@@ -27,12 +27,15 @@ const FormContact = () => {
 
     const editContact = (e) => {
       e.preventDefault()
-    console.log("Editar contacto");
+      const res = actions.editContact(name, email, phone, address, idContactToEdit)
+      if (res) {
+        navigate("/");
+      }
   };
 
-  //Esta función trae los datos del contacto que el usuario quiere editar, para mostrarla en el form.
   useEffect(() => {
     if (idContactToEdit) {
+      //Esta función trae los datos del contacto que el usuario quiere editar, para mostrarla en el form.
       const getDataToEdit = async () => {
         try {
           const data = await actions.getDataToEdit(idContactToEdit);
@@ -47,14 +50,13 @@ const FormContact = () => {
     getDataToEdit();
     setWishEdit(true);
     } else {
+      //Si no existe idContactToEdit (parámetro en la url), entonces se vacían los los inputs.
         setName('')
         setAddress('')
         setEmail('')
         setPhone('')
-
-        setWishEdit(false)
+      setWishEdit(false)
     }
-    console.log("finalizo la función getDataToEdit");
   }, [idContactToEdit, location.pathname]);
 
   
@@ -68,8 +70,6 @@ const FormContact = () => {
   const readAddress = (e) => setAddress(e.target.value);
 
   const editOrCreate = wishEdit ? editContact : createContact;
-
-  //console.log(editOrCreate);
 
   return (
     <form className="col-12 col-md-8 mt-3" onSubmit={editOrCreate}>
