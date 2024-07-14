@@ -14,7 +14,7 @@ export const ContactCard = ({ name, email, phone, address, contactId }) => {
 
     const toEdit = () =>{
         navigate(`/editContact/${contactId}`)
-        console.log(idContact)
+        console.log(contactId)
     }
 
     return (
