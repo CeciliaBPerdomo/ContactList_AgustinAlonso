@@ -2,19 +2,15 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 
-//const delete =
-
 export const ContactCard = ({ name, email, phone, address, contactId }) => {
     const navigate = useNavigate();
    
-
     const { store, actions } = useContext(Context)
 
     const deleteContact = () => actions.deleteContacts(contactId)
 
     const toEdit = () =>{
         navigate(`/editContact/${contactId}`)
-        console.log(contactId)
     }
 
     return (
@@ -35,7 +31,7 @@ export const ContactCard = ({ name, email, phone, address, contactId }) => {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="modal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content text-center">
                         <div className="modal-header row border-bottom-0">
